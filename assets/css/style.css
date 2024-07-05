@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
+* {
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+    font-family: "Lato";
+    background: #f5f5f5;
+}
+
+:root {
+    --offcanvas-width: 270px;
+    --topnav-height:56px;
+}
+
+.admin_img {
+    width: 30px;
+    border-radius: 100%;
+}
+
+.sidevar_nav {
+    width: var(--offcanvas-width) !important;
+}
+.sidebar-link .right-icon{
+    transition: all 0.5s;
+}
+.sidebar-link[aria-expanded="true"] .right-icon{
+    transform: rotate(180deg);
+}
+@media(min-width:992px){
+    .offcanvas-backdrop {
+        display: none!important;
+    }
+    .sidevar_nav{
+        transform: none !important;
+        visibility: visible !important;
+        top: var(--topnav-height) !important;
+    }
+    main{
+        margin-left: var(--offcanvas-width);
+    }
+}
+
