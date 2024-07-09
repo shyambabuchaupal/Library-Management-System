@@ -2,15 +2,23 @@
 include_once('../config/config.php');
 include_once(DIR_URL.'config/database.php');
 include_once(DIR_URL.'models/book.php');
-include_once(DIR_URL.'includes/header.php');
-include_once(DIR_URL.'includes/topbar.php') ;
-include_once(DIR_URL.'includes/sidebar.php');
-
 // add book 
 if(isset($_POST['publish'])){
     $re = storeBook($conn, $_POST); 
+    if($re === true){
+        $_SESSION['sucess']= "Book successfully published" .$conn->error;
+        header("Location:".BASE_URL."books");
+    }else{
+        $_SESSION['error']= "Something went wrong try again !";
+        header("Location:".BASE_URL."books");
+    }
   
 }
+?>
+<?php
+include_once(DIR_URL.'includes/header.php');
+include_once(DIR_URL.'includes/topbar.php') ;
+include_once(DIR_URL.'includes/sidebar.php');
 ?>
 
 
@@ -21,6 +29,7 @@ if(isset($_POST['publish'])){
         <!-- cards  -->
         <div class="row">
             <div class="col-md-12">
+                <?php  include_once(DIR_URL.'includes/alert.php'); ?>
                 <h5 class='fw-bold text-uppercase'>Add Book</h5>
 
             </div>
@@ -42,8 +51,7 @@ if(isset($_POST['publish'])){
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label for="exampleInputPassword1" class="form-label">ISBN Number</label>
-                                        <input type="text" class="form-control shadow-none" name="isbn"
-                                            required>
+                                        <input type="text" class="form-control shadow-none" name="isbn" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -56,8 +64,7 @@ if(isset($_POST['publish'])){
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label for="exampleInputPassword1" class="form-label">Author Name</label>
-                                        <input type="text" class="form-control shadow-none" name="author"
-                                            required>
+                                        <input type="text" class="form-control shadow-none" name="author" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -71,12 +78,12 @@ if(isset($_POST['publish'])){
                                             <?php
                                             while($row=$cats->fetch_assoc()){
                                                 ?>
-                                                    <option value="<?php echo $row['id']?>"><?php echo $row['name']?></option>
-                                                <?php
+                                            <option value="<?php echo $row['id']?>"><?php echo $row['name']?></option>
+                                            <?php
                                             }
                                             ?>
-                                            
-                                           
+
+
                                         </select>
                                         <div class="invalid-feedback">
                                             Please select a valid state.

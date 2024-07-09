@@ -6,7 +6,7 @@ function storeBook($conn, $param){
     $datetime = date("Y-m-d H:i:s");
     $sql="INSERT INTO `books` (title, author, publication_year, isbn, category_id,created_at)
      VALUES ('$title','$author','$publication_year','$isbn','$category_id','$datetime')";
-     $result = $conn->query($sql);
+     return $conn->query($sql);
 
 }
 
@@ -18,5 +18,4 @@ function getcategories($conn){
     $result = $conn->query($sql);
     return $result;
 }
-
 ?>
