@@ -10,7 +10,7 @@ include_once(DIR_URL.'includes/sidebar.php');
             <!-- cards  -->
             <div class="row">
                 <div class="col-md-12">
-                    <?php  include_once(DIR_URL.'includes/alert.php'); ?>
+                 <?php include_once(DIR_URL.'includes/alert.php');?>
                     <h5 class='fw-bold text-uppercase'>Manage Book</h5>
 
                 </div>
